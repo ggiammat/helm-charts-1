@@ -10,6 +10,12 @@ data:
     filenames:
       - /var/log/containers/{{ .podName }}_{{ .namespace }}_*.log
     labels:
+      {{- if .type }}
+      type: {{ .type }}
+      {{- else }}
       type: {{ $container_runtime }}
+      {{- end }}
+      {{- if .program }}
       program: {{ .program }}
+      {{- end }}
     {{- end }}
